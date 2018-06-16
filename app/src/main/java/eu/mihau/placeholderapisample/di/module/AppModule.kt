@@ -28,8 +28,8 @@ class AppModule(var app: Application) {
 
     @Provides
     @Singleton
-    fun provideViewModelFactory(resourceProvider: ResourceProvider, jsonPlaceholderRepository: JsonPlaceholderRepository): ViewModelFactory {
-        return ViewModelFactory(resourceProvider, jsonPlaceholderRepository)
+    fun provideViewModelFactory(resourceProvider: ResourceProvider, schedulerProvider: SchedulerProvider, jsonPlaceholderRepository: JsonPlaceholderRepository): ViewModelFactory {
+        return ViewModelFactory(resourceProvider, jsonPlaceholderRepository, schedulerProvider)
     }
 
     @Provides

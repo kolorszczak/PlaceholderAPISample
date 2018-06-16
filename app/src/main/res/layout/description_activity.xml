@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <import type="eu.mihau.placeholderapisample.R"/>
+
+        <variable
+            name="viewModel"
+            type="eu.mihau.placeholderapisample.viewmodel.DescriptionViewModel"/>
+
+        <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:id="@+id/container"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/half_padding">
+
+            <TextView
+                style="@style/TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="@{viewModel.post.title}"
+                android:textSize="@dimen/text_size_big"
+                android:textStyle="bold"
+                tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"/>
+
+            <TextView
+                android:id="@+id/user"
+                style="@style/TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="@{viewModel.user.name}"
+                android:textSize="@dimen/text_size_small"
+                tools:text="Leanne Graham"/>
+
+            <TextView
+                style="@style/TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="@{viewModel.post.body}"
+                android:textSize="@dimen/text_size_normal"
+                tools:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adapter="@{adapter}"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:paddingBottom="@dimen/half_padding"
+                android:paddingTop="@dimen/half_padding"
+                app:itemDecorator="@{R.drawable.drawable_separator}"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:listItem=""
+                tools:listitem="@layout/comment_item"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</layout>

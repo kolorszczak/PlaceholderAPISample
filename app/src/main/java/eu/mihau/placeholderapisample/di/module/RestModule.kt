@@ -1,7 +1,6 @@
 package eu.mihau.placeholderapisample.di.module
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -46,9 +45,7 @@ class RestModule {
     @Provides
     @Singleton
     fun provideGson(): Gson {
-        return GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create()
+        return GsonBuilder().create()
     }
 
     @Provides

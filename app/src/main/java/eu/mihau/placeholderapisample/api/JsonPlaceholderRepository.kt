@@ -15,12 +15,6 @@ class JsonPlaceholderRepository @Inject constructor(private val apiService: APIS
                 .observeOn(schedulerProvider.ui())
     }
 
-    fun getPost(postId : String): Observable<Post> {
-        return apiService.getPost(postId)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-    }
-
     fun getUser(userId : String): Observable<User> {
         return apiService.getUser(userId)
                 .subscribeOn(schedulerProvider.io())

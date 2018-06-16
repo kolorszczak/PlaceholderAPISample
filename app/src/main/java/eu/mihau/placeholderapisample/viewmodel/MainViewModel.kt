@@ -1,19 +1,29 @@
 package eu.mihau.placeholderapisample.viewmodel
 
-import android.arch.lifecycle.ViewModel
-import android.util.Log
 import eu.mihau.placeholderapisample.api.JsonPlaceholderRepository
-import eu.mihau.placeholderapisample.utils.provider.resource.ResourceProvider
+import eu.mihau.placeholderapisample.model.Post
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val jsonPlaceholderRepository: JsonPlaceholderRepository, private val resourcesProvider: ResourceProvider) : ViewModel() {
+class MainViewModel @Inject constructor(private val jsonPlaceholderRepository: JsonPlaceholderRepository) : BaseViewModel() {
 
     private val TAG = MainViewModel::class.java.simpleName
 
-    fun test() {
-        jsonPlaceholderRepository.getPosts().subscribe({ Log.d(TAG, it.toString())}, {it.printStackTrace()})
-        jsonPlaceholderRepository.getPost("1").subscribe({ Log.d(TAG, it.toString())}, {it.printStackTrace()})
-        jsonPlaceholderRepository.getUser("1").subscribe({ Log.d(TAG, it.toString())}, {it.printStackTrace()})
-        jsonPlaceholderRepository.getComments("1").subscribe({ Log.d(TAG, it.toString())}, {it.printStackTrace()})
+    val mainViewModelSubject: PublishSubject<MainViewModelEvent> = PublishSubject.create()
+
+    fun getPosts() {
+        jsonPlaceholderRepository.getPosts()
+                .subscribe({ mainViewModelSubject.onNext(MainViewModelEvent(MainViewModelEvent.Type.DATA_LOADED, it)) }, ::error)
+                .bind(this)
+    }
+
+    private fun error(error: Throwable) = mainViewModelSubject.onNext(MainViewModelEvent(MainViewModelEvent.Type.ERROR, error = error))
+}
+
+data class MainViewModelEvent(val type: Type,
+                              val postList: List<Post> = emptyList(),
+                              val error: Throwable = Throwable()) {
+    enum class Type {
+        DATA_LOADED, ERROR
     }
 }

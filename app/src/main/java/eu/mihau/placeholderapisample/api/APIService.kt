@@ -12,9 +12,6 @@ interface APIService {
     @GET("/posts")
     fun getPosts(): Observable<List<Post>>
 
-    @GET("/posts/{postId}")
-    fun getPost(@Path("postId") postId : String): Observable<Post>
-
     @GET("/posts/{postId}/comments")
     fun getComments(@Path("postId") postId : String): Observable<List<Comment>>
 

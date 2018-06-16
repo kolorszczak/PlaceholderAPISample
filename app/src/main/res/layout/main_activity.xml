@@ -20,6 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/container"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
@@ -28,6 +29,7 @@
             android:id="@+id/recyclerView"
             android:adapter="@{adapter}"
             android:paddingTop="@dimen/half_padding"
+            android:paddingBottom="@dimen/half_padding"
             android:overScrollMode="never"
             android:scrollbars="none"
             app:itemDecorator="@{R.drawable.drawable_separator}"
