@@ -20,5 +20,6 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
+        viewModel.test()
     }
 }
