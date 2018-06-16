@@ -1,7 +1,7 @@
 package eu.mihau.placeholderapisample.view
 
-import android.support.v7.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 
-open class BaseActivity : AppCompatActivity(){
+open class BaseActivity : DaggerAppCompatActivity(){
 
 }
