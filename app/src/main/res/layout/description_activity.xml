@@ -19,11 +19,11 @@
     </data>
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:overScrollMode="never"
         android:id="@+id/container"
-        android:scrollbars="none"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,12 +35,10 @@
                 style="@style/TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:text="@{viewModel.post.title}"
-                android:transitionName="title"
                 android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
+                android:transitionName="title"
                 tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"/>
 
             <TextView
@@ -48,9 +46,10 @@
                 style="@style/TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:text="@{viewModel.user.name}"
+                android:paddingTop="@dimen/half_padding"
+                android:paddingBottom="@dimen/half_padding"
+                android:paddingRight="@dimen/half_padding"
                 android:textSize="@dimen/text_size_small"
                 tools:text="Leanne Graham"/>
 
@@ -58,8 +57,6 @@
                 style="@style/TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:text="@{viewModel.post.body}"
                 android:textSize="@dimen/text_size_normal"
                 tools:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"/>
@@ -70,9 +67,9 @@
                 android:adapter="@{adapter}"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
-                android:scrollbars="none"
                 android:paddingBottom="@dimen/half_padding"
                 android:paddingTop="@dimen/half_padding"
+                android:scrollbars="none"
                 app:itemDecorator="@{R.drawable.drawable_separator}"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 tools:listItem=""
