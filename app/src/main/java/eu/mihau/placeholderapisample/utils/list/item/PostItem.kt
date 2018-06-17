@@ -15,6 +15,7 @@ class PostItem(val post: Post) : KAbstractItem<PostItem, PostItem.ViewHolder>(R.
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: PostItemBinding = PostItemBinding.bind(itemView)
+        val title = binding.title
     }
 
 }

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.view.View
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.IAdapter
@@ -15,6 +17,7 @@ import eu.mihau.placeholderapisample.utils.list.item.PostItem
 import eu.mihau.placeholderapisample.viewmodel.MainViewModel
 import eu.mihau.placeholderapisample.viewmodel.MainViewModelEvent
 import javax.inject.Inject
+
 
 class MainActivity : BaseActivity() {
 
@@ -39,7 +42,13 @@ class MainActivity : BaseActivity() {
     }
 
     private fun listClick(v: View?, adapter: IAdapter<PostItem>, item: PostItem, position: Int): Boolean {
-        startActivity(Intent(this, DescriptionActivity::class.java).putExtra("comment", item.post))
+        when (binding.recyclerView.findViewHolderForAdapterPosition(position)) {
+            is PostItem.ViewHolder -> {
+                val p1 = Pair.create<View, String>((binding.recyclerView.findViewHolderForAdapterPosition(position) as PostItem.ViewHolder).title, "title")
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity, p1)
+                startActivity(Intent(this, DescriptionActivity::class.java).putExtra("comment", item.post), options.toBundle())
+            }
+        }
         return true
     }
 

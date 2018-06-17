@@ -33,6 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{post.title}"
+                android:transitionName="title"
+                android:id="@+id/title"
                 android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
                 tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"/>

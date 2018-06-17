@@ -38,6 +38,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text="@{viewModel.post.title}"
+                android:transitionName="title"
                 android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
                 tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"/>
