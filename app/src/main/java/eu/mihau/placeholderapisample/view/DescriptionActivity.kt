@@ -1,5 +1,6 @@
 package eu.mihau.placeholderapisample.view
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -33,12 +34,23 @@ class DescriptionActivity : BaseActivity() {
         descriptionViewModel.post.set(post)
         binding.viewModel = descriptionViewModel
         binding.adapter = adapter
+
+        binding.user.setOnClickListener({ userClick() })
         descriptionViewModel.descriptionViewModelSubject.subscribe(::handleEvent)
         descriptionViewModel.getUser()
         descriptionViewModel.getComments()
     }
 
-    fun handleEvent(event: DescriptionViewModelEvent) {
+    private fun userClick(): Boolean {
+        descriptionViewModel.user.get()?.let {
+            startActivity(Intent(Intent.ACTION_SEND)
+                    .setType("text/html")
+                    .putExtra(Intent.EXTRA_EMAIL, it.email))
+        }
+        return true
+    }
+
+    private fun handleEvent(event: DescriptionViewModelEvent) {
         when (event.type) {
             DescriptionViewModelEvent.Type.COMMENTS_LOADED -> {
                 modelAdapter.add(descriptionViewModel.comments)
